@@ -1,6 +1,9 @@
 from django.shortcuts import render
 from django.http.response import HttpResponse
+from covoit.models import OffrePermanente
 
 
 def index(request):
-    return HttpResponse("Hello, world. You're at the covoit index")
+    offres_list = OffrePermanente.objects.order_by('lieu')
+    output = ' | '.join([str(o) for o in offres_list])
+    return HttpResponse(output)
