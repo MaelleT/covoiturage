@@ -1,0 +1,11 @@
+{% if offres_list %}
+    <ul>
+    {% for uneOffre in offres_list %}
+       	
+       	<li>{{uneOffre}}</li> 
+        
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>Aucune offre disponible.</p>
+{% endif %}
