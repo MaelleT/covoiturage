@@ -28,15 +28,15 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 
-# Application definition
+# Application  definition 
 
 INSTALLED_APPS = [
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
+    'django.contrib.admin', # site admin 
+    'django.contrib.auth',  # système d'authentification 
+    'django.contrib.contenttypes',  # framework for content type
+    'django.contrib.sessions',  # session framework 
+    'django.contrib.messages', # messaging framework
+    'django.contrib.staticfiles', #framework for managing static files
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -106,7 +106,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Europe/Paris'
 
 USE_I18N = True
 
