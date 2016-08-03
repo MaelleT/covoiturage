@@ -6,10 +6,6 @@ class TypeOffre(models.Model):
    
     def __str__(self):
         return self.libelle
-    
-    def isDepart(self):
-        return (self.libelle == "Départ")
-    
 
 class Lieu(models.Model):
     libelle=models.CharField(max_length=50)
@@ -28,10 +24,14 @@ class OffrePermanente(models.Model):
     type=models.ForeignKey(TypeOffre)
     jour=models.ForeignKey(Jour)
     
+        
+    def isDepart(self):
+        return (self.type.libelle == "Départ")
+    
     def __str__(self):
         res = "permanent à Xh le " + str(self.jour)
     
-        if self.type.isDepart() :
+        if self.isDepart() :
             res = res + " de " 
         else :
             res = res + " pour "
