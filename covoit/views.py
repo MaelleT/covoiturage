@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http.response import HttpResponse
+from django.http.response import HttpResponse, Http404
 from covoit.models import OffrePermanente
 from django.template import loader
 
@@ -14,9 +14,12 @@ def index(request):
 
 def detailOffreP(request,offreP_id):
     """
-    Renvoie les informations concernant l'offre permanente dont l'id est transmis via l'url
+    Renvoie les informations concernant l'offre permanente dont l'id est transmis via l'url. Génére une erreur 404 si l'id ne correspond à aucune offre
     """
-    offreP = OffrePermanente.objects.get(pk=offreP_id)
+    try :
+        offreP = OffrePermanente.objects.get(pk=offreP_id)
+    except OffrePermanente.DoesNotExist:
+        raise Http404("L'offre n'existe pas")
     
     return render(request,'covoit/detailOffreP.html',{'offreP':offreP})
     
