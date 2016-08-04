@@ -7,10 +7,7 @@ from django.template import loader
 def index(request):
     
     offres_list = OffrePermanente.objects.order_by('lieu')
-    
-    template = loader.get_template('covoit/index.html')
     context={
              'offres_list':offres_list
              }    
-    return HttpResponse(template.render(context,request))
-    
+    return render(request,'covoit/index.html',context)
