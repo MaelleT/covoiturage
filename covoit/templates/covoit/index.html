@@ -1,7 +1,18 @@
-{% load staticfiles %}
-<img src = "{% static 'covoit/img/image_covoit.jpeg' %}" alt = "image covoiturage" /> 
+{% extends "covoit/bases.html" %}
+{% block title %} Welcome | {{ block.super }} {% endblock %}
+{% block jumbotron_content %} 
+<!-- Main component for a primary marketing message or call to action -->
+     	<h2>Trouver votre covoiturage </h2>
+        <p>
+          <a class="btn btn-lg btn-primary" href="#" role="button">Rechercher</a>
+        </p>
+
+{% endblock %}  
+
+{% block content %}  
 
 {% if offres_list %}
+	<h3> Les offres</h3>
     <ul>
     {% for uneOffre in offres_list %}
        	
@@ -12,3 +23,5 @@
 {% else %}
     <p>Aucune offre disponible.</p>
 {% endif %}
+
+{% endblock %}
