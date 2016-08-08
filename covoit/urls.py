@@ -13,4 +13,5 @@ from . import views
 urlpatterns=[
             url(r'^$',views.index,name='index'),
             url(r'^(?P<offreP_id>[0-9]+)/$',views.detailOffreP,name='detailOffreP'),
-            url(r'^login/$', 'django.contrib.auth.views.login'), ] 
+            url(r'^login/$', 'django.contrib.auth.views.login'),
+            url(r'^logout/$', 'django.contrib.auth.views.logout_then_login',{'login_url': '/covoit/login/'}) ] 

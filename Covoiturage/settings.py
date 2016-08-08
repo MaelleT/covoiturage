@@ -129,4 +129,3 @@ STATICFILES_DIRS = [
 
 # instead of redirecting after login to the account.profile page
 LOGIN_REDIRECT_URL = '/covoit/'
-
