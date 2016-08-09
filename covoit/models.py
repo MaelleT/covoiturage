@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 class TypeOffre(models.Model):
@@ -23,7 +24,7 @@ class OffrePermanente(models.Model):
     lieu=models.ForeignKey(Lieu)
     type=models.ForeignKey(TypeOffre)
     jour=models.ForeignKey(Jour)
-    
+    auteur = models.ForeignKey(User)
         
     def isDepart(self):
         return (self.type.libelle == "Départ")

@@ -16,10 +16,12 @@
             <li class="active"><a href="/covoit/">Accueil</a></li>
             <li><a href="/covoit/">Les offres</a></li>
             <li><a href="#">Contact</a></li>
+            {% if request.user.is_authenticated %}
+            
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Mes  offres <span class="caret"></span></a>
               <ul class="dropdown-menu">
-                <li><a href="#">Gérer mes offres</a></li>
+                <li><a href="/covoit/mesOffres/">Gérer mes offres</a></li>
                 <li><a href="#">Ajouter une offre</a></li>
                 <!--  
                 <li role="separator" class="divider"></li>
@@ -28,6 +30,7 @@
                 <li><a href="#">One more separated link</a></li>-->
               </ul>
             </li>
+            {% endif %}
           </ul>
           {% load staticfiles %}
           <img src = "{% static 'covoit/img/image_covoit.jpeg' %}" alt = "image covoiturage" />
@@ -36,10 +39,10 @@
           
           {% if not request.user.is_authenticated %}
           	<li><a href="#">S'inscrire</a></li>
-            <li class="active"><a href="login">Se connecter <span class="sr-only">(current)</span></a></li> 
+            <li class="active"><a href="/covoit/login">Se connecter <span class="sr-only">(current)</span></a></li> 
             {% else %}
             <li><i>Bienvenue {{user}}</i> </li> 
-            <li class="active"><a href="logout">Se déconnecter <span class="sr-only">(current)</span></a></li>  
+            <li class="active"><a href="/covoit/logout">Se déconnecter <span class="sr-only">(current)</span></a></li>  
             {% endif %}
           </ul>
         </div><!--/.nav-collapse -->

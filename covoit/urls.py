@@ -14,4 +14,5 @@ urlpatterns=[
             url(r'^$',views.index,name='index'),
             url(r'^(?P<offreP_id>[0-9]+)/$',views.detailOffreP,name='detailOffreP'),
             url(r'^login/$', auth_views.login,name='login'),
-            url(r'^logout/$',auth_views.logout_then_login,{'login_url': '/covoit/login/'},name='logout') ] 
+            url(r'^logout/$',auth_views.logout_then_login,{'login_url': '/covoit/login/'},name='logout'),
+            url(r'^mesOffres/$',views.mesOffres,name='mesOffres') ] 

@@ -6,7 +6,7 @@ from django.template import loader
 
 def index(request):
     
-    offres_list = OffrePermanente.objects.order_by('lieu')
+    offres_list = OffrePermanente.objects.all()
     context={
              'offres_list':offres_list
              }    
@@ -22,5 +22,10 @@ def detailOffreP(request,offreP_id):
         raise Http404("L'offre n'existe pas")
     
     return render(request,'covoit/detailOffreP.html',{'offreP':offreP})
-    
-    
+
+def mesOffres(request): 
+    offres_user = OffrePermanente.objects.filter(auteur__username=request.user.username)
+    context={
+             'offres_user':offres_user
+             }    
+    return render(request,'covoit/mesOffres.html',context)
