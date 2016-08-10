@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http.response import HttpResponse, Http404
+from django.http.response import HttpResponse, Http404, HttpResponseRedirect
 from covoit.models import OffrePermanente
 from django.template import loader
 from django.contrib.auth.decorators import login_required
@@ -35,7 +35,12 @@ def mesOffres(request):
 
 
 def rechercherForm(request):
-    form = SearchForm()
-    
+    if request.method == 'POST':
+        form = SearchForm(request.POST)
+        if form.is_valid():
+            print(form.cleaned_data['leLieu'])
+    else :
+        form= SearchForm() 
+            
     return render(request,'covoit/rechercherForm.html',{'form':form})
 

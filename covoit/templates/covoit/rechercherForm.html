@@ -7,7 +7,7 @@ Sélectionner les critères de votre recherche
 <p>
 <form action="" method="post">
     {% csrf_token %}
-    {{ form }}
+    {{ form.as_p}}
     <input type="submit" value="Rechercher" />
 </form>
 </p>
