@@ -3,6 +3,7 @@ from django.http.response import HttpResponse, Http404
 from covoit.models import OffrePermanente
 from django.template import loader
 from django.contrib.auth.decorators import login_required
+from covoit.forms import SearchForm
 
 
 def index(request):
@@ -31,3 +32,10 @@ def mesOffres(request):
              'offres_user':offres_user
              }
     return render(request,'covoit/mesOffres.html',context)
+
+
+def rechercherForm(request):
+    form = SearchForm()
+    
+    return render(request,'covoit/rechercherForm.html',{'form':form})
+
