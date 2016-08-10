@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http.response import HttpResponse, Http404
 from covoit.models import OffrePermanente
 from django.template import loader
+from django.contrib.auth.decorators import login_required
 
 
 def index(request):
@@ -23,9 +24,10 @@ def detailOffreP(request,offreP_id):
     
     return render(request,'covoit/detailOffreP.html',{'offreP':offreP})
 
+@login_required
 def mesOffres(request): 
     offres_user = OffrePermanente.objects.filter(auteur__username=request.user.username)
     context={
              'offres_user':offres_user
-             }    
+             }
     return render(request,'covoit/mesOffres.html',context)

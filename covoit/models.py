@@ -30,11 +30,12 @@ class OffrePermanente(models.Model):
         return (self.type.libelle == "Départ")
     
     def __str__(self):
-        res = "permanent à Xh le " + str(self.jour)
+        res = "permanent à Xh le " + str(self.jour)  
     
         if self.isDepart() :
             res = res + " de " 
         else :
             res = res + " pour "
         
-        return res + str(self.lieu)
+        return res + str(self.lieu) + " contact : " + str(self.auteur) 
+ 
