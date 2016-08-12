@@ -1,0 +1,19 @@
+{% extends "covoit/bases.html" %}
+{% block title %} Welcome | {{ block.super }} {% endblock %}
+{% block jumbotron_content %} 
+<!-- Main component for a primary marketing message or call to action -->
+ 
+{% if offres %}
+	<h4> Résultat de votre recherche </h4>
+    <ul>
+    {% for uneOffre in offres %}
+       	
+       	<li><a href="/covoit/{{uneOffre.id}}/">{{uneOffre}}</a></li> 
+        
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>Aucun résultat pour votre recherche
+{% endif %}
+
+{% endblock %}

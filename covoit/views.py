@@ -4,6 +4,8 @@ from covoit.models import OffrePermanente
 from django.template import loader
 from django.contrib.auth.decorators import login_required
 from covoit.forms import SearchForm
+from django.db.models.query import QuerySet
+from django.core.urlresolvers import reverse
 
 
 def index(request):
@@ -35,12 +37,19 @@ def mesOffres(request):
 
 
 def rechercherForm(request):
+    
     if request.method == 'POST':
         form = SearchForm(request.POST)
         if form.is_valid():
-            print(form.cleaned_data['leLieu'])
+            offres = OffrePermanente.objects.filter(lieu__libelle = form.cleaned_data['leLieu'])
+            return render(request,'covoit/lesOffresRecherchees.html',{'offres':offres})
+
+        else :
+            return render(request,'covoit/rechercherForm.html',{'form':form})
+
     else :
-        form= SearchForm() 
-            
-    return render(request,'covoit/rechercherForm.html',{'form':form})
+        form= SearchForm()
+        return render(request,'covoit/rechercherForm.html',{'form':form})
+
+     
 
