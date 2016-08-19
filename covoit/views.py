@@ -6,6 +6,7 @@ from django.contrib.auth.decorators import login_required
 from covoit.forms import SearchForm
 from django.db.models.query import QuerySet
 from django.core.urlresolvers import reverse
+from django.views.generic.list import ListView
 
 
 def index(request):
@@ -27,15 +28,16 @@ def detailOffreP(request,offreP_id):
     
     return render(request,'covoit/detailOffreP.html',{'offreP':offreP})
 
-@login_required
-def mesOffres(request): 
-    offres_user = OffrePermanente.objects.filter(auteur__username=request.user.username)
-    context={
-             'offres_user':offres_user
-             }
-    return render(request,'covoit/mesOffres.html',context)
 
+class OffresAut(ListView):
 
+    context_object_name = 'offres_user'
+    template_name = 'covoit/mesOffres.html'
+    
+    def get_queryset(self):
+        return OffrePermanente.objects.filter(auteur__username=self.request.user.username)
+    
+    
 def rechercherForm(request):
     
     if request.method == 'POST':
