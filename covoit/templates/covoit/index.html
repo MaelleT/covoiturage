@@ -15,9 +15,7 @@
 	<h3> Les offres</h3>
     <ul>
     {% for uneOffre in offres_list %}
-       	
-       	<li><a href="/covoit/{{uneOffre.id}}/">{{uneOffre}}</a></li> 
-        
+     		<li><a href="{% url 'covoit:detailOffreP' uneOffre.id %}">{{uneOffre}}</a></li>
     {% endfor %}
     </ul>
 {% else %}

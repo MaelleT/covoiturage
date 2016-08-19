@@ -7,6 +7,7 @@ from covoit.forms import SearchForm
 from django.db.models.query import QuerySet
 from django.core.urlresolvers import reverse
 from django.views.generic.list import ListView
+from django.views.generic.detail import DetailView
 
 
 def index(request):
@@ -17,17 +18,23 @@ def index(request):
              }    
     return render(request,'covoit/index.html',context)
 
-def detailOffreP(request,offreP_id):
+class OffrePermanenteDetailView(DetailView):
     """
-    Renvoie les informations concernant l'offre permanente dont l'id est transmis via l'url. Génére une erreur 404 si l'id ne correspond à aucune offre
+    Permet de récupérer l'offrePermanente dont l'id est transmis via le paramètre offreP_id dans l'URL
+    Renvoie une erreur 404 en cas d'offre inexistante
     """
-    try :
-        offreP = OffrePermanente.objects.get(pk=offreP_id)
-    except OffrePermanente.DoesNotExist:
-        raise Http404("L'offre n'existe pas")
     
-    return render(request,'covoit/detailOffreP.html',{'offreP':offreP})
-
+    model=OffrePermanente
+    template_name = 'covoit/detailOffreP.html'
+    context_object_name = 'offreP'
+    
+    def get_object(self):    
+        try :
+            offreP = OffrePermanente.objects.get(pk=self.kwargs.get("offreP_id"))
+        except OffrePermanente.DoesNotExist:
+            raise Http404("L'offre n'existe pas")
+            
+        return offreP
 
 class OffresAut(ListView):
 
