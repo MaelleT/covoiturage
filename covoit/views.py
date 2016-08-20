@@ -8,6 +8,7 @@ from django.db.models.query import QuerySet
 from django.core.urlresolvers import reverse
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
+from django.views.generic.edit import UpdateView
 
 
 def index(request):
@@ -35,6 +36,15 @@ class OffrePermanenteDetailView(DetailView):
             raise Http404("L'offre n'existe pas")
             
         return offreP
+
+class OffrePermanenteUpdateView(UpdateView):
+    """
+    Permet de mettre à jour l'offrePermanente dont l'id est transmis via le paramètre pk dans l'URL
+    """
+    model = OffrePermanente
+    template_name = 'covoit/updateOffreP.html'
+    fields = ['lieu','type','jour']
+
 
 class OffresAut(ListView):
 

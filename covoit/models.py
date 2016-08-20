@@ -26,7 +26,10 @@ class OffrePermanente(models.Model):
     type=models.ForeignKey(TypeOffre)
     jour=models.ForeignKey(Jour)
     auteur = models.ForeignKey(User)
-        
+    
+    def get_absolute_url(self):
+        return reverse('covoit:detailOffreP', kwargs={'offreP_id' : self.pk,})
+    
     def isDepart(self):
         return (self.type.libelle == "Départ")
     

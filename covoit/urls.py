@@ -15,6 +15,8 @@ urlpatterns=[
             url(r'^$',views.index,name='index'),
             #ex : /covoit/offrePermanente/3/
             url(r'^offrePermanente/(?P<offreP_id>[0-9]+)/$',views.OffrePermanenteDetailView.as_view(),name='detailOffreP'),
+            #ex : /covoit/offrePermanente/3/
+            url(r'^offrePermanente/(?P<pk>[0-9]+)/update$', views.OffrePermanenteUpdateView.as_view(),name = 'updateOffreP'),
             url(r'^login/$', auth_views.login,name='login'),
             url(r'^logout/$',auth_views.logout_then_login,{'login_url': '/covoit/login/'},name='logout'),
             url(r'^mesOffres/$', login_required(views.OffresAut.as_view())),

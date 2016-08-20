@@ -1,0 +1,11 @@
+{% extends "covoit/bases.html" %}
+{% block title %} Welcome | {{ block.super }} {% endblock %}
+
+{% block jumbotron_content %}
+ 
+<form action="" method="post">{% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Update" />
+</form>
+
+{% endblock %}

@@ -8,7 +8,7 @@
     <ul>
     {% for uneOffre in offres_user %}
        	
-        <li><a href="{% url 'covoit:detailOffreP' uneOffre.id %}">{{uneOffre}}</a></li>
+        <li><a href="{% url 'covoit:updateOffreP' uneOffre.id %}">{{uneOffre}}</a></li>
         
     {% endfor %}
     </ul>
